@@ -28,16 +28,19 @@ val CATEGORIAS = listOf("Abarrotes", "Bebidas", "Limpieza", "Otros")
 class ProductFormViewModel(
     private val repository: ProductRepository
 ) : ViewModel() {
-
+//privado solo viewmodel modifica
     private val _uiState = MutableStateFlow(ProductFormUiState())
+    //// Público: la UI solo puede leerlo, no modificarlo
     val uiState: StateFlow<ProductFormUiState> = _uiState.asStateFlow()
 
     // Cargar datos si estamos editando
     fun cargarProducto(id: Int) {
         viewModelScope.launch {
+            // _uiState mutable solo viewmodel modifica
             _uiState.value = _uiState.value.copy(isLoading = true)
             val producto = repository.obtenerPorId(id)
             producto?.let {
+
                 _uiState.value = _uiState.value.copy(
                     nombre = it.nombre,
                     categoria = it.categoria,

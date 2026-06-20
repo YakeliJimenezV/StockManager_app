@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 // Respuesta completa de la API
 data class ExchangeRateResponse(
-    @SerializedName("base") val base: String,
-    @SerializedName("rates") val rates: Map<String, Double>
+    @SerializedName("base") val base: String, // PEN
+    @SerializedName("rates") val rates: Map<String, Double> //USD
 )

@@ -2,25 +2,26 @@ package com.tecsup.stockmanager.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Paleta principal — verde inventario
-val Verde80 = Color(0xFF1B5E20)
-val Verde60 = Color(0xFF388E3C)
-val Verde40 = Color(0xFF66BB6A)
+// ── Paleta principal — coral/naranja cálido ───────────────────────────────────
+val CoralPrimary  = Color(0xFFFF6B35)   // naranja coral — accent principal
+val CoralDark     = Color(0xFFE85520)   // coral oscuro — pressed / dark mode
+val CoralLight    = Color(0xFFFF8C42)   // coral claro — gradiente secundario
+val CoralSurface  = Color(0xFFFFF3EE)   // fondo cálido suave
 
-// Acento — ámbar para alertas de stock
-val Ambar80 = Color(0xFFFF8F00)
-val Ambar40 = Color(0xFFFFCA28)
+// ── Superficies ───────────────────────────────────────────────────────────────
+val WarmWhite     = Color(0xFFFFFFFF)   // cards en modo claro
+val WarmBg        = Color(0xFFFFF3EE)   // fondo general claro
+val WarmBgDark    = Color(0xFF1C1008)   // fondo general oscuro
+val WarmSurfDark  = Color(0xFF2A1A0E)   // cards en modo oscuro
 
-// Fondos y superficies
-val FondoClaro = Color(0xFFF9FBF9)
-val SuperficieClaro = Color(0xFFFFFFFF)
-val FondoOscuro = Color(0xFF0D1B0E)
-val SuperficieOscuro = Color(0xFF1A2E1B)
+// ── Texto ─────────────────────────────────────────────────────────────────────
+val TextDark      = Color(0xFF2D1B10)   // texto principal sobre fondo claro
+val TextMutedWarm = Color(0xFF9E7B6A)   // texto secundario cálido
 
-// Error
-val Rojo = Color(0xFFD32F2F)
-val RojoClaro = Color(0xFFFFCDD2)
+// ── Error / Alerta ────────────────────────────────────────────────────────────
+val Rojo          = Color(0xFFD32F2F)
+val RojoClaro     = Color(0xFFFFCDD2)
 
-// Stock crítico
-val StockCritico = Color(0xFFFF5252)
-val StockOk = Color(0xFF4CAF50)
+// ── Stock ─────────────────────────────────────────────────────────────────────
+val StockCritico  = Color(0xFFFF5252)
+val StockOk       = Color(0xFF4CAF50)

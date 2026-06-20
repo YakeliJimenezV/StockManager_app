@@ -17,7 +17,7 @@ abstract class StockManagerDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: StockManagerDatabase? = null
-
+// singlenton — solo una instancia de la base de datos
         fun getInstance(context: Context): StockManagerDatabase {
             return INSTANCE ?: synchronized(this) {
                 Room.databaseBuilder(

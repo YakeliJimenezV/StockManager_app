@@ -10,6 +10,7 @@ object RetrofitInstance {
     private const val BASE_URL = "https://api.exchangerate-api.com/"
 
     // Logging para ver las llamadas en Logcat (útil para debugging)
+    //imprime cada peticion
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
@@ -22,6 +23,7 @@ object RetrofitInstance {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(httpClient)
+            // Conversión de JSON a objetos Kotlin
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ExchangeRateService::class.java)

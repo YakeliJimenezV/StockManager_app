@@ -35,7 +35,7 @@ interface ProductDao {
     @Query("SELECT * FROM productos WHERE cantidad < stockMinimo AND usuarioId = :usuarioId")
     fun obtenerStockCritico(usuarioId: String = "local"): Flow<List<ProductEntity>>
 
-    // Valor total del inventario
+    // suma Valor total del inventario
     @Query("SELECT SUM(precio * cantidad) FROM productos WHERE usuarioId = :usuarioId")
     fun obtenerValorTotal(usuarioId: String = "local"): Flow<Double?>
 }
