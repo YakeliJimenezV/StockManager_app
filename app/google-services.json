@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "401591060675",
+    "project_id": "stockmanager-8d388",
+    "storage_bucket": "stockmanager-8d388.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401591060675:android:b56fcc44d74bb6e7613a76",
+        "android_client_info": {
+          "package_name": "com.tecsup.stockmanager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1iv64Pju5Yhe9GQTcNPRNtgGn7fy1Igo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

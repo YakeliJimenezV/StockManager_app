@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.tecsup.stockmanager" />
+                  <option name="mobileSdkAppId" value="1:401591060675:android:b56fcc44d74bb6e7613a76" />
+                  <option name="projectId" value="stockmanager-8d388" />
+                  <option name="projectNumber" value="401591060675" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
