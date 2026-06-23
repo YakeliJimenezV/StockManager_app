@@ -14,6 +14,7 @@ import com.tecsup.stockmanager.ui.auth.AuthScreen
 import com.tecsup.stockmanager.ui.detail.ProductDetailScreen
 import com.tecsup.stockmanager.ui.form.ProductFormScreen
 import com.tecsup.stockmanager.ui.list.ProductListScreen
+import com.tecsup.stockmanager.ui.search.SearchScreen
 import com.tecsup.stockmanager.ui.stats.StatsScreen
 
 object Routes {
@@ -22,6 +23,7 @@ object Routes {
     const val DETAIL = "detail/{productoId}"
     const val FORM = "form?productoId={productoId}"
     const val STATS = "stats"
+    const val SEARCH = "search"
 
     fun detailRoute(id: Int) = "detail/$id"
     fun formRoute(id: Int? = null) =
@@ -44,10 +46,7 @@ fun NavGraph(productoIdDesdeNotificacion: Int? = null) {
         }
     }
 
-    NavHost(
-        navController = navController,
-        startDestination = startDestination
-    ) {
+    NavHost(navController = navController, startDestination = startDestination) {
         composable(Routes.AUTH) {
             AuthScreen(
                 onLoginExitoso = {
@@ -57,18 +56,12 @@ fun NavGraph(productoIdDesdeNotificacion: Int? = null) {
                 }
             )
         }
-
         composable(Routes.LIST) {
             ProductListScreen(
-                onNavigateToDetail = { id ->
-                    navController.navigate(Routes.detailRoute(id))
-                },
-                onNavigateToForm = { id ->
-                    navController.navigate(Routes.formRoute(id))
-                },
-                onNavigateToStats = {
-                    navController.navigate(Routes.STATS)
-                },
+                onNavigateToDetail = { navController.navigate(Routes.detailRoute(it)) },
+                onNavigateToForm = { navController.navigate(Routes.formRoute(it)) },
+                onNavigateToStats = { navController.navigate(Routes.STATS) },
+                onNavigateToSearch = { navController.navigate(Routes.SEARCH) },
                 onCerrarSesion = {
                     navController.navigate(Routes.AUTH) {
                         popUpTo(Routes.LIST) { inclusive = true }
@@ -76,45 +69,31 @@ fun NavGraph(productoIdDesdeNotificacion: Int? = null) {
                 }
             )
         }
-
         composable(
             route = Routes.DETAIL,
-            arguments = listOf(
-                navArgument("productoId") { type = NavType.IntType }
-            )
+            arguments = listOf(navArgument("productoId") { type = NavType.IntType })
         ) { backStackEntry ->
-            val id = backStackEntry.arguments?.getInt("productoId")
-                ?: return@composable
+            val id = backStackEntry.arguments?.getInt("productoId") ?: return@composable
             ProductDetailScreen(
                 productoId = id,
                 onNavigateBack = { navController.popBackStack() },
-                onNavigateToEdit = { editId ->
-                    navController.navigate(Routes.formRoute(editId))
-                }
+                onNavigateToEdit = { navController.navigate(Routes.formRoute(it)) }
             )
         }
-
         composable(
             route = Routes.FORM,
-            arguments = listOf(
-                navArgument("productoId") {
-                    type = NavType.IntType
-                    defaultValue = -1
-                }
-            )
+            arguments = listOf(navArgument("productoId") {
+                type = NavType.IntType; defaultValue = -1
+            })
         ) { backStackEntry ->
-            val id = backStackEntry.arguments?.getInt("productoId")
-                ?.takeIf { it != -1 }
-            ProductFormScreen(
-                productoId = id,
-                onNavigateBack = { navController.popBackStack() }
-            )
+            val id = backStackEntry.arguments?.getInt("productoId")?.takeIf { it != -1 }
+            ProductFormScreen(productoId = id, onNavigateBack = { navController.popBackStack() })
         }
-
         composable(Routes.STATS) {
-            StatsScreen(
-                onNavigateBack = { navController.popBackStack() }
-            )
+            StatsScreen(onNavigateBack = { navController.popBackStack() })
+        }
+        composable(Routes.SEARCH) {
+            SearchScreen(onNavigateBack = { navController.popBackStack() })
         }
     }
 }

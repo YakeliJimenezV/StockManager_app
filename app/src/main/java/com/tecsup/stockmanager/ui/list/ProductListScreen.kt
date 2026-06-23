@@ -22,6 +22,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Logout
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -73,6 +74,7 @@ fun ProductListScreen(
     onNavigateToDetail: (Int) -> Unit,
     onNavigateToForm: (Int?) -> Unit,
     onNavigateToStats: () -> Unit,
+    onNavigateToSearch: () -> Unit,
     onCerrarSesion: () -> Unit
 ) {
     val context = LocalContext.current
@@ -100,6 +102,9 @@ fun ProductListScreen(
                     )
                 },
                 actions = {
+                    IconButton(onClick = onNavigateToSearch) {
+                        Icon(Icons.Default.Search, contentDescription = "Buscar")
+                    }
                     IconButton(onClick = onNavigateToStats) {
                         Icon(Icons.Default.BarChart, contentDescription = "Estadísticas")
                     }
@@ -207,7 +212,6 @@ fun ProductListScreen(
                                     )
                                 }
                             }
-
                             items(uiState.productos) { producto ->
                                 ProductoCard(
                                     producto = producto,
@@ -267,11 +271,7 @@ fun ProductListScreen(
                     ),
                     shape = RoundedCornerShape(10.dp)
                 ) {
-                    Text(
-                        "Sí, cerrar sesión",
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
-                    )
+                    Text("Sí, cerrar sesión", color = Color.White, fontWeight = FontWeight.Bold)
                 }
             },
             dismissButton = {
@@ -279,8 +279,7 @@ fun ProductListScreen(
                     onClick = { mostrarDialogoCerrarSesion = false },
                     shape = RoundedCornerShape(10.dp),
                     border = BorderStroke(
-                        1.dp,
-                        MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)
+                        1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)
                     )
                 ) {
                     Text("Cancelar")

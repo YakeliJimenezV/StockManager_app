@@ -15,19 +15,16 @@ class ViewModelFactory(
         return when {
             modelClass.isAssignableFrom(ProductListViewModel::class.java) ->
                 ProductListViewModel(repository) as T
-
             modelClass.isAssignableFrom(ProductDetailViewModel::class.java) ->
                 ProductDetailViewModel(repository) as T
-
             modelClass.isAssignableFrom(ProductFormViewModel::class.java) ->
                 ProductFormViewModel(repository) as T
-
             modelClass.isAssignableFrom(StatsViewModel::class.java) ->
                 StatsViewModel(repository) as T
-
             modelClass.isAssignableFrom(AuthViewModel::class.java) ->
                 AuthViewModel(authRepository!!) as T
-
+            modelClass.isAssignableFrom(SearchViewModel::class.java) ->
+                SearchViewModel(repository) as T
             else -> throw IllegalArgumentException("ViewModel desconocido: ${modelClass.name}")
         }
     }
