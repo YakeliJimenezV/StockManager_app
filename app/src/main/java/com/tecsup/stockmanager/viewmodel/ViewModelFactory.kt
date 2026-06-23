@@ -28,6 +28,9 @@ class ViewModelFactory(
             modelClass.isAssignableFrom(AuthViewModel::class.java) ->
                 AuthViewModel(authRepository!!) as T
 
+            modelClass.isAssignableFrom(SearchViewModel::class.java) ->
+                SearchViewModel(repository) as T
+
             else -> throw IllegalArgumentException("ViewModel desconocido: ${modelClass.name}")
         }
     }

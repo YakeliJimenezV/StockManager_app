@@ -22,6 +22,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Logout
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -73,6 +74,7 @@ fun ProductListScreen(
     onNavigateToDetail: (Int) -> Unit,
     onNavigateToForm: (Int?) -> Unit,
     onNavigateToStats: () -> Unit,
+    onNavigateToSearch: () -> Unit,
     onCerrarSesion: () -> Unit
 ) {
     val context = LocalContext.current
@@ -100,6 +102,9 @@ fun ProductListScreen(
                     )
                 },
                 actions = {
+                    IconButton(onClick = onNavigateToSearch) {
+                        Icon(Icons.Default.Search, contentDescription = "Buscar")
+                    }
                     IconButton(onClick = onNavigateToStats) {
                         Icon(Icons.Default.BarChart, contentDescription = "Estadísticas")
                     }
@@ -322,9 +327,7 @@ private fun BienvenidaCard(nombreUsuario: String) {
                     color = Color.White
                 )
             }
-
             Spacer(modifier = Modifier.width(16.dp))
-
             Column {
                 Text(
                     text = "¡Bienvenida, $nombreUsuario! 👋",
@@ -369,9 +372,7 @@ private fun ResumenRapido(
                     modifier = Modifier
                         .size(36.dp)
                         .clip(CircleShape)
-                        .background(
-                            MaterialTheme.colorScheme.primary.copy(alpha = 0.15f)
-                        ),
+                        .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.15f)),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(text = "📦", fontSize = 16.sp)
@@ -399,8 +400,7 @@ private fun ResumenRapido(
             colors = CardDefaults.cardColors(
                 containerColor = if (productosCriticos > 0)
                     StockCritico.copy(alpha = 0.1f)
-                else
-                    StockOk.copy(alpha = 0.1f)
+                else StockOk.copy(alpha = 0.1f)
             ),
             elevation = CardDefaults.cardElevation(0.dp)
         ) {
@@ -415,8 +415,7 @@ private fun ResumenRapido(
                         .background(
                             if (productosCriticos > 0)
                                 StockCritico.copy(alpha = 0.15f)
-                            else
-                                StockOk.copy(alpha = 0.15f)
+                            else StockOk.copy(alpha = 0.15f)
                         ),
                     contentAlignment = Alignment.Center
                 ) {
@@ -473,9 +472,7 @@ private fun ProductoCard(
                     .clip(RoundedCornerShape(2.dp))
                     .background(if (esStockCritico) StockCritico else StockOk)
             )
-
             Spacer(modifier = Modifier.width(14.dp))
-
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = producto.nombre.replaceFirstChar { it.uppercase() },
@@ -509,17 +506,13 @@ private fun ProductoCard(
                     }
                 }
             }
-
             Spacer(modifier = Modifier.width(8.dp))
-
-            Column(horizontalAlignment = Alignment.End) {
-                Text(
-                    text = "S/ ${String.format(Locale.US, "%.2f", producto.precio)}",
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.primary
-                )
-            }
+            Text(
+                text = "S/ ${String.format(Locale.US, "%.2f", producto.precio)}",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary
+            )
         }
     }
 }
