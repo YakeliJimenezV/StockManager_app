@@ -14,7 +14,6 @@ import com.tecsup.stockmanager.ui.auth.AuthScreen
 import com.tecsup.stockmanager.ui.detail.ProductDetailScreen
 import com.tecsup.stockmanager.ui.form.ProductFormScreen
 import com.tecsup.stockmanager.ui.list.ProductListScreen
-import com.tecsup.stockmanager.ui.search.SearchScreen
 import com.tecsup.stockmanager.ui.stats.StatsScreen
 
 object Routes {
@@ -23,7 +22,6 @@ object Routes {
     const val DETAIL = "detail/{productoId}"
     const val FORM = "form?productoId={productoId}"
     const val STATS = "stats"
-    const val SEARCH = "search"
 
     fun detailRoute(id: Int) = "detail/$id"
     fun formRoute(id: Int? = null) =
@@ -50,7 +48,6 @@ fun NavGraph(productoIdDesdeNotificacion: Int? = null) {
         navController = navController,
         startDestination = startDestination
     ) {
-        // Auth
         composable(Routes.AUTH) {
             AuthScreen(
                 onLoginExitoso = {
@@ -61,7 +58,6 @@ fun NavGraph(productoIdDesdeNotificacion: Int? = null) {
             )
         }
 
-        // Lista principal
         composable(Routes.LIST) {
             ProductListScreen(
                 onNavigateToDetail = { id ->
@@ -73,9 +69,6 @@ fun NavGraph(productoIdDesdeNotificacion: Int? = null) {
                 onNavigateToStats = {
                     navController.navigate(Routes.STATS)
                 },
-                onNavigateToSearch = {
-                    navController.navigate(Routes.SEARCH)
-                },
                 onCerrarSesion = {
                     navController.navigate(Routes.AUTH) {
                         popUpTo(Routes.LIST) { inclusive = true }
@@ -84,7 +77,6 @@ fun NavGraph(productoIdDesdeNotificacion: Int? = null) {
             )
         }
 
-        // Detalle
         composable(
             route = Routes.DETAIL,
             arguments = listOf(
@@ -102,7 +94,6 @@ fun NavGraph(productoIdDesdeNotificacion: Int? = null) {
             )
         }
 
-        // Formulario crear/editar
         composable(
             route = Routes.FORM,
             arguments = listOf(
@@ -120,16 +111,8 @@ fun NavGraph(productoIdDesdeNotificacion: Int? = null) {
             )
         }
 
-        // Estadísticas
         composable(Routes.STATS) {
             StatsScreen(
-                onNavigateBack = { navController.popBackStack() }
-            )
-        }
-
-        // Búsqueda
-        composable(Routes.SEARCH) {
-            SearchScreen(
                 onNavigateBack = { navController.popBackStack() }
             )
         }

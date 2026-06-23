@@ -22,7 +22,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Logout
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -74,7 +73,6 @@ fun ProductListScreen(
     onNavigateToDetail: (Int) -> Unit,
     onNavigateToForm: (Int?) -> Unit,
     onNavigateToStats: () -> Unit,
-    onNavigateToSearch: () -> Unit,
     onCerrarSesion: () -> Unit
 ) {
     val context = LocalContext.current
@@ -102,9 +100,6 @@ fun ProductListScreen(
                     )
                 },
                 actions = {
-                    IconButton(onClick = onNavigateToSearch) {
-                        Icon(Icons.Default.Search, contentDescription = "Buscar")
-                    }
                     IconButton(onClick = onNavigateToStats) {
                         Icon(Icons.Default.BarChart, contentDescription = "Estadísticas")
                     }
